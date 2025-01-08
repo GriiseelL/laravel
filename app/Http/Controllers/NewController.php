@@ -6,15 +6,21 @@ use Illuminate\Http\Request;
 
 class NewController extends Controller
 {
-    public function first()
+    public function first($hitung=null)
     {
-
         view()->share(
             [
-                "data" => "first experience"
+                // "data" => "first experience"
+                "hitung" => $hitung
             ]
         );
 
-        return view("first");
+        return view("v_first");
+    }
+
+    public function hitungdata(Request $request)
+    {
+        $hitung = $request->panjang + $request->lebar;
+        return redirect()->route("first", $hitung);
     }
 }
